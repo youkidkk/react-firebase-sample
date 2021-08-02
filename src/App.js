@@ -1,25 +1,29 @@
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import "@fontsource/roboto/500.css";
 
-function App() {
+import PrivateRoute from "./auth/PrivateRoute";
+import { AuthProvider } from "./auth/AuthProvider";
+import Home from "./pages/Home";
+import Login from "./auth/Login";
+import { CssBaseline } from "@material-ui/core";
+import AppBar from "./components/app-bar";
+
+const appTitle = "React Firebase Sample";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <CssBaseline />
+      <AppBar appTitle={appTitle} />
+      <Router>
+        <div>
+          <PrivateRoute exact path="/" component={Home} />
+          <Route exact path="/login" component={Login} />
+        </div>
+      </Router>
+    </AuthProvider>
   );
-}
+};
 
 export default App;
