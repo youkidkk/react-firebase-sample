@@ -19,7 +19,7 @@ const App = () => {
       <div id="app">
         <AppBar appTitle={appTitle} />
         <Router>
-          <div>
+          <div id="contents">
             <PrivateRoute exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
           </div>
