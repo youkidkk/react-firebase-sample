@@ -8,6 +8,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   appBar: {
     maxHeight: "64px",
+    marginBottom: "1.0rem",
   },
 }));
 
