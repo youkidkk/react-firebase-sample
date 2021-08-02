@@ -16,13 +16,15 @@ const App = () => {
   return (
     <AuthProvider>
       <CssBaseline />
-      <AppBar appTitle={appTitle} />
-      <Router>
-        <div>
-          <PrivateRoute exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-        </div>
-      </Router>
+      <div id="app">
+        <AppBar appTitle={appTitle} />
+        <Router>
+          <div>
+            <PrivateRoute exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+          </div>
+        </Router>
+      </div>
     </AuthProvider>
   );
 };
