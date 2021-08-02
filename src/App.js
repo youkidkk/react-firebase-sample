@@ -1,12 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import { CssBaseline } from "@material-ui/core";
 import "@fontsource/roboto/500.css";
 
 import PrivateRoute from "./auth/PrivateRoute";
 import { AuthProvider } from "./auth/AuthProvider";
 import Home from "./pages/Home";
 import Login from "./auth/Login";
-import { CssBaseline } from "@material-ui/core";
 import AppBar from "./components/app-bar";
 
 const appTitle = "React Firebase Sample";
