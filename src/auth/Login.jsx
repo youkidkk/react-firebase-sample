@@ -7,8 +7,8 @@ import {
 } from "@material-ui/core";
 import React, { useContext, useState } from "react";
 import { withRouter } from "react-router";
-import { AuthContext } from "./AuthProvider";
-import ContentsTitle from "../components/contents-title";
+import { AuthContext } from "auth/AuthProvider";
+import ContentsTitle from "components/contents-title";
 
 const useStyles = makeStyles((theme) => ({
   card: {

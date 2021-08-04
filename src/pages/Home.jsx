@@ -1,5 +1,5 @@
 import React from "react";
-import { app } from "../firebase-app";
+import { app } from "firebase-app";
 
 function Home(props) {
   return (

@@ -7,8 +7,8 @@ import {
 } from "@material-ui/core";
 import { ExitToApp } from "@material-ui/icons";
 import { useContext } from "react";
-import { app } from "../firebase-app";
-import { AuthContext } from "../auth/AuthProvider";
+import { app } from "firebase-app";
+import { AuthContext } from "auth/AuthProvider";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
