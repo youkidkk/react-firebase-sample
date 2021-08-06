@@ -1,11 +1,12 @@
 import {
   AppBar as MuiAppBar,
+  Chip,
   IconButton,
   makeStyles,
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import { ExitToApp } from "@material-ui/icons";
+import { AccountCircle, ExitToApp } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { useContext } from "react";
 
@@ -30,9 +31,12 @@ export default function AppBar(props) {
         <Typography variant="h6">{props.appTitle}</Typography>
         <div className={classes.grow} />
         {currentUser && (
-          <IconButton edge="end" color="inherit" onClick={() => logout()}>
-            <ExitToApp />
-          </IconButton>
+          <>
+            <Chip icon={<AccountCircle />} label={currentUser.email} />
+            <IconButton edge="end" color="inherit" onClick={() => logout()}>
+              <ExitToApp />
+            </IconButton>
+          </>
         )}
       </Toolbar>
     </MuiAppBar>
