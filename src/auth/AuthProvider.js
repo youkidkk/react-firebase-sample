@@ -1,17 +1,20 @@
+import { MessageSnackbarContext } from "components/snack-bar";
 import { app } from "firebase-app.js";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 export const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
+  const { showMessageSnackbar } = useContext(MessageSnackbarContext);
 
   const login = async (email, password, history) => {
     try {
       await app.auth().signInWithEmailAndPassword(email, password);
+      showMessageSnackbar(true, "success", "ログインしました。");
       history.push("/");
     } catch (error) {
-      alert(error);
+      showMessageSnackbar(true, "error", "ログインできませんでした。");
     }
   };
 
