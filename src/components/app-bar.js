@@ -7,7 +7,6 @@ import {
 } from "@material-ui/core";
 import { ExitToApp } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
-import { app } from "firebase-app";
 import { useContext } from "react";
 
 const useStyles = makeStyles((theme) => ({
@@ -23,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AppBar(props) {
   const classes = useStyles();
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, logout } = useContext(AuthContext);
 
   return (
     <MuiAppBar position="sticky" className={classes.appBar}>
@@ -31,11 +30,7 @@ export default function AppBar(props) {
         <Typography variant="h6">{props.appTitle}</Typography>
         <div className={classes.grow} />
         {currentUser && (
-          <IconButton
-            edge="end"
-            color="inherit"
-            onClick={() => app.auth().signOut()}
-          >
+          <IconButton edge="end" color="inherit" onClick={() => logout()}>
             <ExitToApp />
           </IconButton>
         )}

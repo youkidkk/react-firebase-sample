@@ -18,6 +18,10 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = () => {
+    app.auth().signOut();
+  };
+
   useEffect(() => {
     app.auth().onAuthStateChanged(setCurrentUser);
   }, []);
@@ -26,6 +30,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         login: login,
+        logout: logout,
         currentUser,
       }}
     >
