@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     app.auth().signOut();
+    showMessageSnackbar(true, "success", "ログアウトしました。");
   };
 
   useEffect(() => {
