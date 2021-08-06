@@ -6,6 +6,7 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+import { indigo } from "@material-ui/core/colors";
 import { AccountCircle, ExitToApp } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { useContext } from "react";
@@ -17,6 +18,13 @@ const useStyles = makeStyles((theme) => ({
   },
   grow: {
     flexGrow: 1,
+  },
+  accountChip: {
+    color: indigo[50],
+    backgroundColor: indigo[400],
+  },
+  accountChipIcon: {
+    color: indigo[50],
   },
 }));
 
@@ -32,7 +40,11 @@ export default function AppBar(props) {
         <div className={classes.grow} />
         {currentUser && (
           <>
-            <Chip icon={<AccountCircle />} label={currentUser.email} />
+            <Chip
+              icon={<AccountCircle className={classes.accountChipIcon} />}
+              label={currentUser.email}
+              className={classes.accountChip}
+            />
             <IconButton edge="end" color="inherit" onClick={() => logout()}>
               <ExitToApp />
             </IconButton>
