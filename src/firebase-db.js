@@ -7,6 +7,22 @@ const DATETIME_FORMAT = "yyyy-mm-dd HH:MM:ss.lll";
 
 const db = app.firestore();
 
+export async function getTodos(userId) {
+  const res = await db
+    .collection("users")
+    .doc(userId)
+    .collection("todos")
+    .get();
+  if (res.empty) {
+    return [];
+  }
+  const result = [];
+  res.forEach((doc) => {
+    result.push({ id: doc.id, ...doc.data() });
+  });
+  return result;
+}
+
 export async function createTodo(
   userId,
   overview,
