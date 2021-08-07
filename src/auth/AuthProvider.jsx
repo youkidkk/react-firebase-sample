@@ -1,4 +1,4 @@
-import { MessageSnackbarContext } from "components/snack-bar";
+import { MessageSnackbarContext } from "components/SnackBar";
 import { app } from "firebase-app.js";
 import React, { useContext, useEffect, useState } from "react";
 

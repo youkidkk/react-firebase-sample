@@ -6,7 +6,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import { AuthContext } from "auth/AuthProvider";
-import ContentsTitle from "components/contents-title";
+import ContentsTitle from "components/ContentsTitle";
 import React, { useContext, useState } from "react";
 import { withRouter } from "react-router";
 

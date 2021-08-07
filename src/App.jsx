@@ -3,11 +3,11 @@ import { CssBaseline } from "@material-ui/core";
 import { AuthProvider } from "auth/AuthProvider";
 import Login from "auth/Login";
 import PrivateRoute from "auth/PrivateRoute";
-import AppBar from "components/app-bar";
+import AppBar from "components/AppBar";
 import {
   MessageSnackbar,
   MessageSnackbarContextProvider,
-} from "components/snack-bar";
+} from "components/SnackBar";
 import Home from "pages/Home";
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";

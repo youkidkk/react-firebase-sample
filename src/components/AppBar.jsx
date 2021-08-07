@@ -9,7 +9,7 @@ import { indigo } from "@material-ui/core/colors";
 import { ExitToApp } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { useContext } from "react";
-import AccountChip from "./account-chip";
+import AccountChip from "./AccountChip";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
