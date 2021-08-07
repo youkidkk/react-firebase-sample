@@ -1,15 +1,18 @@
 import {
   AppBar as MuiAppBar,
   Chip,
+  ClickAwayListener,
+  Hidden,
   IconButton,
   makeStyles,
   Toolbar,
+  Tooltip,
   Typography,
 } from "@material-ui/core";
 import { indigo } from "@material-ui/core/colors";
 import { AccountCircle, ExitToApp } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -32,6 +35,14 @@ export default function AppBar(props) {
   const classes = useStyles();
 
   const { currentUser, logout } = useContext(AuthContext);
+  const [accountTooltipOpen, toggleAccountTooltipOpen] = useState(false);
+
+  const handleAccountTooltipOpen = () => {
+    toggleAccountTooltipOpen(true);
+  };
+  const handleAccountTooltipClose = () => {
+    toggleAccountTooltipOpen(false);
+  };
 
   return (
     <MuiAppBar position="sticky" className={classes.appBar}>
@@ -40,11 +51,33 @@ export default function AppBar(props) {
         <div className={classes.grow} />
         {currentUser && (
           <>
-            <Chip
-              icon={<AccountCircle className={classes.accountChipIcon} />}
-              label={currentUser.email}
-              className={classes.accountChip}
-            />
+            <Hidden lgUp>
+              <ClickAwayListener onClickAway={handleAccountTooltipClose}>
+                <Tooltip
+                  PopperProps={{
+                    disablePortal: true,
+                  }}
+                  onClose={handleAccountTooltipClose}
+                  open={accountTooltipOpen}
+                  disableFocusListener
+                  disableHoverListener
+                  disableTouchListener
+                  title={currentUser.email}
+                >
+                  <AccountCircle
+                    className={classes.accountChipIcon}
+                    onClick={handleAccountTooltipOpen}
+                  />
+                </Tooltip>
+              </ClickAwayListener>
+            </Hidden>
+            <Hidden mdDown>
+              <Chip
+                icon={<AccountCircle className={classes.accountChipIcon} />}
+                label={currentUser.email}
+                className={classes.accountChip}
+              />
+            </Hidden>
             <IconButton edge="end" color="inherit" onClick={() => logout()}>
               <ExitToApp />
             </IconButton>
