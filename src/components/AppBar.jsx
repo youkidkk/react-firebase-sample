@@ -5,7 +5,6 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
-import { indigo } from "@material-ui/core/colors";
 import { ExitToApp } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { useContext } from "react";
@@ -18,13 +17,6 @@ const useStyles = makeStyles((theme) => ({
   },
   grow: {
     flexGrow: 1,
-  },
-  accountChip: {
-    color: indigo[50],
-    backgroundColor: indigo[400],
-  },
-  accountChipIcon: {
-    color: indigo[50],
   },
 }));
 
