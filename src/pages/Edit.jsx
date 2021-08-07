@@ -11,8 +11,14 @@ import {
   Typography,
 } from "@material-ui/core";
 import { ArrowLeft, ArrowRight } from "@material-ui/icons";
+import { AuthContext } from "auth/AuthProvider";
 import ContentsTitle from "components/ContentsTitle";
-import { useState } from "react";
+import { MessageSnackbarContext } from "components/SnackBar";
+import * as dateformat from "dateformat";
+import { createTodo } from "firebase-db";
+import { useContext, useState } from "react";
+
+const DATE_FORMAT = "yyyy-mm-dd";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -26,14 +32,16 @@ const useStyles = makeStyles((theme) => ({
 
 const initialFormState = {
   overview: "",
-  deadline: new Date().toISOString().split("T")[0],
+  deadline: dateformat(new Date(), DATE_FORMAT),
   priority: 3,
-  detail: "",
+  details: "",
 };
 
 const Edit = (props) => {
   const classes = useStyles();
 
+  const { currentUser } = useContext(AuthContext);
+  const { showMessageSnackbar } = useContext(MessageSnackbarContext);
   const [formState, setFormState] = useState(initialFormState);
 
   const handleChange = (event) => {
@@ -60,8 +68,20 @@ const Edit = (props) => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      await createTodo(
+        currentUser.uid,
+        formState.overview,
+        formState.deadline,
+        formState.priority,
+        formState.details
+      );
+      showMessageSnackbar(true, "success", "登録しました。");
+    } catch (error) {
+      showMessageSnackbar(true, "error", "登録に失敗しました。");
+    }
   };
 
   return (
@@ -122,13 +142,13 @@ const Edit = (props) => {
           <Box mt={2}>
             <Typography>詳細</Typography>
             <TextField
-              name="detail"
+              name="details"
               fullWidth
               margin="dense"
               variant="outlined"
               multiline
               maxRows={5}
-              value={formState.detail}
+              value={formState.details}
               onChange={handleChange}
             />
           </Box>
