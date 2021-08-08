@@ -1,4 +1,4 @@
-import { Card, Container, makeStyles } from "@material-ui/core";
+import { Box, Card, Container, Link, makeStyles } from "@material-ui/core";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT_DISPLAY } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
@@ -42,6 +42,9 @@ const View = (props) => {
     <Container maxWidth="sm">
       <Card className={classes.card}>
         <ContentsTitle title="Todo内容" />
+        <Box mt={3}>
+          <Link href="/todos/list">一覧へ戻る</Link>
+        </Box>
         <ItemDisplay itemName="概要" itemValue={todo.overview} />
         <ItemDisplay
           itemName="期限"
