@@ -1,7 +1,9 @@
 import { Card, Container, makeStyles } from "@material-ui/core";
 import { AuthContext } from "auth/AuthProvider";
+import { DATE_FORMAT_DISPLAY } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
 import ItemDisplay from "components/ItemDisplay";
+import dateFormat from "dateformat";
 import { getTodo } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
 import { withRouter } from "react-router";
@@ -41,7 +43,10 @@ const View = (props) => {
       <Card className={classes.card}>
         <ContentsTitle title="Todo内容" />
         <ItemDisplay itemName="概要" itemValue={todo.overview} />
-        <ItemDisplay itemName="期限" itemValue={todo.deadline} />
+        <ItemDisplay
+          itemName="期限"
+          itemValue={dateFormat(new Date(todo.deadline), DATE_FORMAT_DISPLAY)}
+        />
         <ItemDisplay itemName="優先度" itemValue={todo.priority} />
         <ItemDisplay itemName="詳細" itemValue={todo.details} />
       </Card>
