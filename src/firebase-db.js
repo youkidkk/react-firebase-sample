@@ -22,6 +22,16 @@ export async function getTodos(userId) {
   return result;
 }
 
+export async function getTodo(userId, id) {
+  const res = await db
+    .collection("users")
+    .doc(userId)
+    .collection("todos")
+    .doc(id)
+    .get();
+  return { id: res.id, ...res.data() };
+}
+
 export async function createTodo(
   userId,
   overview,

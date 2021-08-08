@@ -10,6 +10,7 @@ import {
 } from "components/SnackBar";
 import Edit from "pages/todos/Edit";
 import List from "pages/todos/List";
+import View from "pages/todos/View";
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -26,6 +27,7 @@ const App = () => {
             <div id="contents">
               <Switch>
                 <PrivateRoute path="/todos/list" component={List} />
+                <PrivateRoute path="/todos/view/:id" component={View} />
                 <PrivateRoute path="/todos/create" component={Edit} />
                 <Route path="/" component={Login} />
               </Switch>

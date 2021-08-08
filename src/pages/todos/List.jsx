@@ -30,6 +30,10 @@ const List = (props) => {
     props.history.push("/todos/create");
   };
 
+  const handleRowClick = (params, event) => {
+    props.history.push(`/todos/view/${params.id}`);
+  };
+
   return (
     <>
       <ContentsTitle title="Todo一覧" />
@@ -52,6 +56,7 @@ const List = (props) => {
         disableColumnSelector
         disableDensitySelector
         disableSelectionOnClick
+        onRowClick={handleRowClick}
       />
     </>
   );
