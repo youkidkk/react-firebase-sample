@@ -5,7 +5,6 @@ import {
   Container,
   Grid,
   IconButton,
-  Link,
   makeStyles,
   Slider,
   TextField,
@@ -19,6 +18,7 @@ import { MessageSnackbarContext } from "components/SnackBar";
 import * as dateformat from "dateformat";
 import { createTodo } from "firebase-db";
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -89,7 +89,7 @@ const Edit = (props) => {
       <Card className={classes.card}>
         <ContentsTitle title="登録" />
         <Box mt={3}>
-          <Link href="/todos/list">一覧へ戻る</Link>
+          <Link to="/todos/list">一覧へ戻る</Link>
         </Box>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Box mt={2}>

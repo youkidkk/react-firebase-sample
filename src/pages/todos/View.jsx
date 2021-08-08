@@ -1,4 +1,4 @@
-import { Box, Card, Container, Link, makeStyles } from "@material-ui/core";
+import { Box, Card, Container, makeStyles } from "@material-ui/core";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT_DISPLAY } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
@@ -6,6 +6,7 @@ import ItemDisplay from "components/ItemDisplay";
 import dateFormat from "dateformat";
 import { getTodo } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -42,7 +43,7 @@ const View = (props) => {
       <Card className={classes.card}>
         <ContentsTitle title="Todo内容" />
         <Box mt={3}>
-          <Link href="/todos/list">一覧へ戻る</Link>
+          <Link to="/todos/list">一覧へ戻る</Link>
         </Box>
         <ItemDisplay itemName="概要" itemValue={todo.overview} />
         <ItemDisplay
