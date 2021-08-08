@@ -91,12 +91,10 @@ const Login = ({ history }) => {
             />
           </div>
           <div className={classes.actions}>
-            <Button variant="outlined" color="primary" onClick={handleClear}>
+            <Button variant="outlined" onClick={handleClear}>
               クリア
             </Button>
-            <Button type="submit" variant="contained" color="primary">
-              ログイン
-            </Button>
+            <Button type="submit">ログイン</Button>
           </div>
         </form>
       </Card>

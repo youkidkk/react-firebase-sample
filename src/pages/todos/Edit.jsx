@@ -8,7 +8,7 @@ import {
   makeStyles,
   Slider,
   TextField,
-  Typography,
+  Typography
 } from "@material-ui/core";
 import { ArrowLeft, ArrowRight } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
@@ -96,7 +96,6 @@ const Edit = (props) => {
               inputProps={{ required: true }}
               fullWidth
               margin="dense"
-              variant="outlined"
               value={formState.overview}
               onChange={handleChange}
             />
@@ -108,7 +107,6 @@ const Edit = (props) => {
               type="date"
               inputProps={{ required: true }}
               margin="dense"
-              variant="outlined"
               value={formState.deadline}
               onChange={handleChange}
             />
@@ -145,7 +143,6 @@ const Edit = (props) => {
               name="details"
               fullWidth
               margin="dense"
-              variant="outlined"
               multiline
               maxRows={5}
               value={formState.details}
@@ -153,7 +150,7 @@ const Edit = (props) => {
             />
           </Box>
           <Box mt={4} display="flex" justifyContent="flex-end">
-            <Button type="submit" variant="contained" color="primary">
+            <Button type="submit">
               登録
             </Button>
           </Box>

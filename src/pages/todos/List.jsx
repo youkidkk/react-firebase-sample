@@ -38,13 +38,7 @@ const List = (props) => {
     <>
       <ContentsTitle title="Todo一覧" />
       <Box mb={2} display="flex" justifyContent="flex-end">
-        <Button
-          onClick={handleCreateButtonClick}
-          variant="contained"
-          color="primary"
-        >
-          新規作成
-        </Button>
+        <Button onClick={handleCreateButtonClick}>新規作成</Button>
       </Box>
       <DataGrid
         rows={todos}
