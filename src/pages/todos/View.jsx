@@ -1,9 +1,21 @@
-import { Typography } from "@material-ui/core";
+import { Card, Container, makeStyles } from "@material-ui/core";
 import { AuthContext } from "auth/AuthProvider";
 import ContentsTitle from "components/ContentsTitle";
+import ItemDisplay from "components/ItemDisplay";
 import { getTodo } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
 import { withRouter } from "react-router";
+
+const useStyles = makeStyles((theme) => ({
+  card: {
+    width: "100%",
+    padding: "1rem",
+  },
+  itemDisplay: {
+    fontSize: "1.1rem",
+    marginLeft: 10,
+  },
+}));
 
 const getTodoAsync = async (uid, id, setTodo) => {
   try {
@@ -14,6 +26,8 @@ const getTodoAsync = async (uid, id, setTodo) => {
 };
 
 const View = (props) => {
+  const classes = useStyles();
+
   const { currentUser } = useContext(AuthContext);
   const uid = currentUser.uid;
   const id = props.match.params.id;
@@ -23,17 +37,15 @@ const View = (props) => {
     return null;
   }
   return (
-    <>
-      <ContentsTitle title="Todo内容" />
-      <Typography>概要</Typography>
-      <div>{todo.overview}</div>
-      <Typography>期限</Typography>
-      <div>{todo.deadline}</div>
-      <Typography>優先度</Typography>
-      <div>{todo.priority}</div>
-      <Typography>詳細</Typography>
-      <div>{todo.details}</div>
-    </>
+    <Container maxWidth="sm">
+      <Card className={classes.card}>
+        <ContentsTitle title="Todo内容" />
+        <ItemDisplay itemName="概要" itemValue={todo.overview} />
+        <ItemDisplay itemName="期限" itemValue={todo.deadline} />
+        <ItemDisplay itemName="優先度" itemValue={todo.priority} />
+        <ItemDisplay itemName="詳細" itemValue={todo.details} />
+      </Card>
+    </Container>
   );
 };
 
