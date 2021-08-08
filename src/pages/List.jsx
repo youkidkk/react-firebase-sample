@@ -9,26 +9,19 @@ const columns = [
   { field: "deadline", headerName: "期限", sortable: true, minWidth: 150 },
 ];
 
+const getTodosAsync = async (uid, setTodos) => {
+  try {
+    setTodos(await getTodos(uid));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const Todos = (props) => {
   const { currentUser } = useContext(AuthContext);
-
+  const uid = currentUser.uid;
   const [todos, setTodos] = useState([]);
-  useEffect(() => {
-    const asyncGetter = async () => {
-      const list = await getTodos(currentUser.uid);
-      setTodos(
-        list.map((data) => {
-          return {
-            id: data.id,
-            overview: data.overview,
-            priority: data.priority,
-            deadline: data.deadline,
-          };
-        })
-      );
-    };
-    asyncGetter();
-  });
+  useEffect(() => getTodosAsync(uid, setTodos), [uid]);
 
   return (
     <DataGrid
