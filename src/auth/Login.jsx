@@ -33,8 +33,13 @@ const initialFormState = {
 };
 
 const Login = ({ history }) => {
-  const { login } = useContext(AuthContext);
+  const { currentUser, login } = useContext(AuthContext);
+
   const classes = useStyles();
+
+  if (currentUser) {
+    history.push("/todos/list");
+  }
 
   const [formState, setFormState] = useState(initialFormState);
 
