@@ -1,4 +1,4 @@
-import { DATETIME_FORMAT } from "common/common-const";
+import { DATETIME_FORMAT, PRIORITY_DISPLAY } from "common/common-const";
 import * as dateformat from "dateformat";
 import "firebase/firestore";
 import { app } from "./firebase-app";
@@ -16,7 +16,11 @@ export async function getTodos(userId) {
   }
   const result = [];
   res.forEach((doc) => {
-    result.push({ id: doc.id, ...doc.data() });
+    result.push({
+      id: doc.id,
+      ...doc.data(),
+      priorityDisplay: PRIORITY_DISPLAY[doc.data().priority],
+    });
   });
   return result;
 }
@@ -29,7 +33,11 @@ export async function getTodo(userId, id) {
     .doc(id)
     .get();
   if (res.exists) {
-    return { id: res.id, ...res.data() };
+    return {
+      id: res.id,
+      ...res.data(),
+      priorityDisplay: PRIORITY_DISPLAY[res.data().priority],
+    };
   }
 }
 

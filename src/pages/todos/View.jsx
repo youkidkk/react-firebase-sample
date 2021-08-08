@@ -47,7 +47,7 @@ const View = (props) => {
           itemName="期限"
           itemValue={dateFormat(new Date(todo.deadline), DATE_FORMAT_DISPLAY)}
         />
-        <ItemDisplay itemName="優先度" itemValue={todo.priority} />
+        <ItemDisplay itemName="優先度" itemValue={todo.priorityDisplay} />
         <ItemDisplay itemName="詳細" itemValue={todo.details} />
       </Card>
     </Container>

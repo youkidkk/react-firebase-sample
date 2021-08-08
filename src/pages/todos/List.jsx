@@ -7,7 +7,12 @@ import { useContext, useEffect, useState } from "react";
 import { withRouter } from "react-router";
 
 const columns = [
-  { field: "priority", headerName: "優先度", sortable: true, minWidth: 150 },
+  {
+    field: "priorityDisplay",
+    headerName: "優先度",
+    sortable: true,
+    minWidth: 150,
+  },
   { field: "deadline", headerName: "期限", sortable: true, minWidth: 150 },
   { field: "overview", headerName: "概要", sortable: false, flex: 1 },
 ];
