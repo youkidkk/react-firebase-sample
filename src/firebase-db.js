@@ -1,13 +1,12 @@
 import { DATETIME_FORMAT, PRIORITY_DISPLAY } from "common/common-const";
 import * as dateformat from "dateformat";
 import "firebase/firestore";
-import { app } from "./firebase-app";
+import { FirebaseApp } from "./firebase-app";
 
-const db = app.firestore();
+const FireStore = FirebaseApp.firestore();
 
 export async function getTodos(userId) {
-  const res = await db
-    .collection("users")
+  const res = await FireStore.collection("users")
     .doc(userId)
     .collection("todos")
     .get();
@@ -26,8 +25,7 @@ export async function getTodos(userId) {
 }
 
 export async function getTodo(userId, id) {
-  const res = await db
-    .collection("users")
+  const res = await FireStore.collection("users")
     .doc(userId)
     .collection("todos")
     .doc(id)
@@ -49,7 +47,7 @@ export async function createTodo(
   details
 ) {
   const datetime = dateformat(new Date(), DATETIME_FORMAT);
-  db.collection("users").doc(userId).collection("todos").add({
+  FireStore.collection("users").doc(userId).collection("todos").add({
     overview,
     deadline,
     priority,

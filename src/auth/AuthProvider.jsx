@@ -1,5 +1,5 @@
 import { MessageSnackbarContext } from "components/SnackBar";
-import { app } from "firebase-app.js";
+import { FirebaseApp } from "firebase-app.js";
 import React, { useContext, useEffect, useState } from "react";
 
 export const AuthContext = React.createContext();
@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password, history) => {
     try {
-      await app.auth().signInWithEmailAndPassword(email, password);
+      await FirebaseApp.auth().signInWithEmailAndPassword(email, password);
       showMessageSnackbar(true, "success", "ログインしました。");
       history.push("/todos/list");
     } catch (error) {
@@ -19,12 +19,12 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
-    app.auth().signOut();
+    FirebaseApp.auth().signOut();
     showMessageSnackbar(true, "success", "ログアウトしました。");
   };
 
   useEffect(() => {
-    app.auth().onAuthStateChanged(setCurrentUser);
+    FirebaseApp.auth().onAuthStateChanged(setCurrentUser);
   }, []);
 
   return (
