@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   itemDisplay: {
     fontSize: "1.1rem",
     marginLeft: 10,
+    whiteSpace: "pre-wrap",
   },
 }));
 
