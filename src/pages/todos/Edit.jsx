@@ -12,13 +12,12 @@ import {
 } from "@material-ui/core";
 import { ArrowLeft, ArrowRight } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
+import { DATE_FORMAT } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
 import { MessageSnackbarContext } from "components/SnackBar";
 import * as dateformat from "dateformat";
 import { createTodo } from "firebase-db";
 import { useContext, useState } from "react";
-
-const DATE_FORMAT = "yyyy-mm-dd";
 
 const useStyles = makeStyles((theme) => ({
   card: {

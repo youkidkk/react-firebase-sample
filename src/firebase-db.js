@@ -1,8 +1,7 @@
+import { DATETIME_FORMAT } from "common/common-const";
 import * as dateformat from "dateformat";
 import "firebase/firestore";
 import { app } from "./firebase-app";
-
-const DATETIME_FORMAT = "yyyy-mm-dd HH:MM:ss.lll";
 
 const db = app.firestore();
 
