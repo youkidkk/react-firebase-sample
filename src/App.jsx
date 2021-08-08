@@ -17,9 +17,6 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 const appTitle = "React Firebase Sample";
 
 const theme = createTheme({
-  typography: {
-    fontSize: 12,
-  },
   props: {
     MuiTextField: {
       variant: "outlined",
