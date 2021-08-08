@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     try {
       await app.auth().signInWithEmailAndPassword(email, password);
       showMessageSnackbar(true, "success", "ログインしました。");
-      history.push("/");
+      history.push("/todos/list");
     } catch (error) {
       showMessageSnackbar(true, "error", "ログインできませんでした。");
     }
