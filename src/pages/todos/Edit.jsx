@@ -8,7 +8,7 @@ import {
   makeStyles,
   Slider,
   TextField,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import { ArrowLeft, ArrowRight } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
@@ -90,7 +90,7 @@ const Edit = (props) => {
         <ContentsTitle title="登録" />
         <form className={classes.form} onSubmit={handleSubmit}>
           <Box mt={2}>
-            <Typography>概要</Typography>
+            <Typography variant="h6">概要</Typography>
             <TextField
               name="overview"
               inputProps={{ required: true }}
@@ -101,7 +101,7 @@ const Edit = (props) => {
             />
           </Box>
           <Box mt={2}>
-            <Typography>期限</Typography>
+            <Typography variant="h6">期限</Typography>
             <TextField
               name="deadline"
               type="date"
@@ -112,7 +112,7 @@ const Edit = (props) => {
             />
           </Box>
           <Box mt={2}>
-            <Typography>優先度（高⇔低）</Typography>
+            <Typography variant="h6">優先度（高⇔低）</Typography>
             <Grid container alignItems="center">
               <Grid item xs={1}>
                 <IconButton onClick={() => handlePriorityAdjust(-1)}>
@@ -138,7 +138,7 @@ const Edit = (props) => {
             </Grid>
           </Box>
           <Box mt={2}>
-            <Typography>詳細</Typography>
+            <Typography variant="h6">詳細</Typography>
             <TextField
               name="details"
               fullWidth
@@ -150,9 +150,7 @@ const Edit = (props) => {
             />
           </Box>
           <Box mt={4} display="flex" justifyContent="flex-end">
-            <Button type="submit">
-              登録
-            </Button>
+            <Button type="submit">登録</Button>
           </Box>
         </form>
       </Card>
