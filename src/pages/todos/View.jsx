@@ -17,8 +17,11 @@ const View = (props) => {
   const { currentUser } = useContext(AuthContext);
   const uid = currentUser.uid;
   const id = props.match.params.id;
-  const [todo, setTodo] = useState({});
+  const [todo, setTodo] = useState(null);
   useEffect(() => getTodoAsync(uid, id, setTodo), [uid, id]);
+  if (todo == null) {
+    return null;
+  }
   return (
     <>
       <ContentsTitle title="Todo内容" />

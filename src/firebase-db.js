@@ -29,7 +29,9 @@ export async function getTodo(userId, id) {
     .collection("todos")
     .doc(id)
     .get();
-  return { id: res.id, ...res.data() };
+  if (res.exists) {
+    return { id: res.id, ...res.data() };
+  }
 }
 
 export async function createTodo(
