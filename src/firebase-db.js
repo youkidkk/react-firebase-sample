@@ -3,7 +3,6 @@ import "firebase/firestore";
 import { app } from "./firebase-app";
 
 const DATETIME_FORMAT = "yyyy-mm-dd HH:MM:ss.lll";
-// const DATE_FORMAT = "yyyy-mm-dd";
 
 const db = app.firestore();
 
