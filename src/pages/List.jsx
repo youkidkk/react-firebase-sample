@@ -4,9 +4,9 @@ import { getTodos } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
 
 const columns = [
-  { field: "overview", headerName: "概要", sortable: false, flex: 1 },
   { field: "priority", headerName: "優先度", sortable: true, minWidth: 150 },
   { field: "deadline", headerName: "期限", sortable: true, minWidth: 150 },
+  { field: "overview", headerName: "概要", sortable: false, flex: 1 },
 ];
 
 const getTodosAsync = async (uid, setTodos) => {
