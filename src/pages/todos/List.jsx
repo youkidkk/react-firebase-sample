@@ -33,7 +33,7 @@ const List = (props) => {
   return (
     <>
       <ContentsTitle title="Todo一覧" />
-      <Box mb={4} display="flex" justifyContent="flex-end">
+      <Box mb={2} display="flex" justifyContent="flex-end">
         <Button
           onClick={handleCreateButtonClick}
           variant="contained"
