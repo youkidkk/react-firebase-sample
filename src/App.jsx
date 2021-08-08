@@ -1,5 +1,5 @@
 import "@fontsource/roboto/500.css";
-import { CssBaseline } from "@material-ui/core";
+import { createTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
 import { AuthProvider } from "auth/AuthProvider";
 import Login from "auth/Login";
 import PrivateRoute from "auth/PrivateRoute";
@@ -16,27 +16,44 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const appTitle = "React Firebase Sample";
 
+const theme = createTheme({
+  typography: {
+    fontSize: 12,
+  },
+  props: {
+    MuiTextField: {
+      variant: "outlined",
+    },
+    MuiButton: {
+      variant: "contained",
+      color: "primary",
+    },
+  },
+});
+
 const App = () => {
   return (
-    <MessageSnackbarContextProvider>
-      <AuthProvider>
-        <CssBaseline />
-        <div id="app">
-          <AppBar appTitle={appTitle} />
-          <Router>
-            <div id="contents">
-              <Switch>
-                <PrivateRoute path="/todos/list" component={List} />
-                <PrivateRoute path="/todos/view/:id" component={View} />
-                <PrivateRoute path="/todos/create" component={Edit} />
-                <Route path="/" component={Login} />
-              </Switch>
-            </div>
-          </Router>
-        </div>
-      </AuthProvider>
-      <MessageSnackbar />
-    </MessageSnackbarContextProvider>
+    <ThemeProvider theme={theme}>
+      <MessageSnackbarContextProvider>
+        <AuthProvider>
+          <CssBaseline />
+          <div id="app">
+            <AppBar appTitle={appTitle} />
+            <Router>
+              <div id="contents">
+                <Switch>
+                  <PrivateRoute path="/todos/list" component={List} />
+                  <PrivateRoute path="/todos/view/:id" component={View} />
+                  <PrivateRoute path="/todos/create" component={Edit} />
+                  <Route path="/" component={Login} />
+                </Switch>
+              </div>
+            </Router>
+          </div>
+        </AuthProvider>
+        <MessageSnackbar />
+      </MessageSnackbarContextProvider>
+    </ThemeProvider>
   );
 };
 
