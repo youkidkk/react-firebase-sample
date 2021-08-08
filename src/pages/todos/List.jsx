@@ -1,7 +1,9 @@
+import { Box, Button } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import { AuthContext } from "auth/AuthProvider";
 import { getTodos } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
+import { withRouter } from "react-router";
 
 const columns = [
   { field: "priority", headerName: "優先度", sortable: true, minWidth: 150 },
@@ -23,19 +25,34 @@ const List = (props) => {
   const [todos, setTodos] = useState([]);
   useEffect(() => getTodosAsync(uid, setTodos), [uid]);
 
+  const handleCreateButtonClick = () => {
+    props.history.push("/todos/create");
+  };
+
   return (
-    <DataGrid
-      rows={todos}
-      columns={columns}
-      pageSize={5}
-      autoHeight
-      disableColumnFilter
-      disableColumnMenu
-      disableColumnSelector
-      disableDensitySelector
-      disableSelectionOnClick
-    />
+    <>
+      <Box mb={4} display="flex" justifyContent="flex-end">
+        <Button
+          onClick={handleCreateButtonClick}
+          variant="contained"
+          color="primary"
+        >
+          新規作成
+        </Button>
+      </Box>
+      <DataGrid
+        rows={todos}
+        columns={columns}
+        pageSize={5}
+        autoHeight
+        disableColumnFilter
+        disableColumnMenu
+        disableColumnSelector
+        disableDensitySelector
+        disableSelectionOnClick
+      />
+    </>
   );
 };
 
-export default List;
+export default withRouter(List);
