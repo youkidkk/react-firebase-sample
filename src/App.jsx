@@ -8,8 +8,8 @@ import {
   MessageSnackbar,
   MessageSnackbarContextProvider,
 } from "components/SnackBar";
-import Edit from "pages/Edit";
-import Todos from "pages/List";
+import Edit from "pages/todos/Edit";
+import List from "pages/todos/List";
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -24,7 +24,7 @@ const App = () => {
           <AppBar appTitle={appTitle} />
           <Router>
             <div id="contents">
-              <PrivateRoute exact path="/" component={Todos} />
+              <PrivateRoute exact path="/" component={List} />
               <PrivateRoute exact path="/edit" component={Edit} />
               <Route exact path="/login" component={Login} />
             </div>

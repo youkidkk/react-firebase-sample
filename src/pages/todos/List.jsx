@@ -17,7 +17,7 @@ const getTodosAsync = async (uid, setTodos) => {
   }
 };
 
-const Todos = (props) => {
+const List = (props) => {
   const { currentUser } = useContext(AuthContext);
   const uid = currentUser.uid;
   const [todos, setTodos] = useState([]);
@@ -38,4 +38,4 @@ const Todos = (props) => {
   );
 };
 
-export default Todos;
+export default List;
