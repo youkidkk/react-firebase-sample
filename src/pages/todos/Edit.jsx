@@ -144,6 +144,7 @@ const Edit = (props) => {
               fullWidth
               margin="dense"
               multiline
+              minRows={5}
               maxRows={5}
               value={formState.details}
               onChange={handleChange}
