@@ -5,6 +5,7 @@ import {
   Container,
   Grid,
   IconButton,
+  Link,
   makeStyles,
   Slider,
   TextField,
@@ -87,6 +88,9 @@ const Edit = (props) => {
     <Container maxWidth="sm">
       <Card className={classes.card}>
         <ContentsTitle title="登録" />
+        <Box mt={3}>
+          <Link href="/todos/list">一覧へ戻る</Link>
+        </Box>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Box mt={2}>
             <Typography variant="h6">概要</Typography>
