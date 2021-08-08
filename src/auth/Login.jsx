@@ -8,7 +8,7 @@ import {
 import { AuthContext } from "auth/AuthProvider";
 import ContentsTitle from "components/ContentsTitle";
 import React, { useContext, useState } from "react";
-import { withRouter } from "react-router";
+import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -32,8 +32,9 @@ const initialFormState = {
   password: "",
 };
 
-const Login = ({ history }) => {
+const Login = () => {
   const { currentUser, login } = useContext(AuthContext);
+  const history = useHistory();
 
   const classes = useStyles();
 
@@ -102,4 +103,4 @@ const Login = ({ history }) => {
   );
 };
 
-export default withRouter(Login);
+export default Login;

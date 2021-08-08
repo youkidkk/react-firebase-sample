@@ -4,7 +4,7 @@ import { AuthContext } from "auth/AuthProvider";
 import ContentsTitle from "components/ContentsTitle";
 import { getTodos } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
-import { withRouter } from "react-router";
+import { useHistory } from "react-router";
 
 const columns = [
   {
@@ -25,18 +25,19 @@ const getTodosAsync = async (uid, setTodos) => {
   }
 };
 
-const List = (props) => {
+const List = () => {
   const { currentUser } = useContext(AuthContext);
   const uid = currentUser.uid;
+  const history = useHistory();
   const [todos, setTodos] = useState([]);
   useEffect(() => getTodosAsync(uid, setTodos), [uid]);
 
   const handleCreateButtonClick = () => {
-    props.history.push("/todos/create");
+    history.push("/todos/create");
   };
 
   const handleRowClick = (params, event) => {
-    props.history.push(`/todos/view/${params.id}`);
+    history.push(`/todos/view/${params.id}`);
   };
 
   return (
@@ -61,4 +62,4 @@ const List = (props) => {
   );
 };
 
-export default withRouter(List);
+export default List;

@@ -6,7 +6,6 @@ import ItemDisplay from "components/ItemDisplay";
 import dateFormat from "dateformat";
 import { getTodo } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
-import { withRouter } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -57,4 +56,4 @@ const View = (props) => {
   );
 };
 
-export default withRouter(View);
+export default View;
