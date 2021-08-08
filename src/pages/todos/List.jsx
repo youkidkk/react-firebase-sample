@@ -1,6 +1,7 @@
 import { Box, Button } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import { AuthContext } from "auth/AuthProvider";
+import ContentsTitle from "components/ContentsTitle";
 import { getTodos } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
 import { withRouter } from "react-router";
@@ -31,6 +32,7 @@ const List = (props) => {
 
   return (
     <>
+      <ContentsTitle title="Todo一覧" />
       <Box mb={4} display="flex" justifyContent="flex-end">
         <Button
           onClick={handleCreateButtonClick}
