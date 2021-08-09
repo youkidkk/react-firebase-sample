@@ -6,11 +6,16 @@ import {
   Grid,
   IconButton,
   makeStyles,
-  Slider,
   TextField,
   Typography,
 } from "@material-ui/core";
-import { ArrowLeft, ArrowRight, List } from "@material-ui/icons";
+import {
+  ArrowLeft,
+  ArrowRight,
+  List,
+  Star,
+  StarOutline,
+} from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
@@ -68,16 +73,9 @@ const Edit = (props) => {
     });
   };
 
-  const handlePriorityChange = (event, value) => {
-    setFormState({
-      ...formState,
-      priority: value,
-    });
-  };
-
   const handlePriorityAdjust = (step) => {
     const newValue = formState.priority + step;
-    if (0 <= newValue && newValue <= 5) {
+    if (1 <= newValue && newValue <= 5) {
       setFormState({
         ...formState,
         priority: formState.priority + step,
@@ -121,6 +119,15 @@ const Edit = (props) => {
 
   const createOrUpdate = id ? "更新" : "登録";
 
+  const priorityStars = [];
+  for (let i = 0; i < 5; i++) {
+    if (i < formState.priority) {
+      priorityStars.push(<Star />);
+    } else {
+      priorityStars.push(<StarOutline />);
+    }
+  }
+
   return (
     <Container maxWidth="sm">
       <Card className={classes.card}>
@@ -157,23 +164,15 @@ const Edit = (props) => {
             />
           </Box>
           <Box mt={2}>
-            <Typography variant="h6">優先度（高⇔低）</Typography>
+            <Typography variant="h6">優先度</Typography>
             <Grid container alignItems="center">
               <Grid item xs={1}>
                 <IconButton onClick={() => handlePriorityAdjust(-1)}>
                   <ArrowLeft />
                 </IconButton>
               </Grid>
-              <Grid item xs={10}>
-                <Slider
-                  name="priority"
-                  valueLabelDisplay="auto"
-                  step={1}
-                  min={1}
-                  max={5}
-                  value={formState.priority}
-                  onChangeCommitted={handlePriorityChange}
-                />
+              <Grid item alignItems="center">
+                {priorityStars}
               </Grid>
               <Grid item xs={1}>
                 <IconButton onClick={() => handlePriorityAdjust(1)}>
