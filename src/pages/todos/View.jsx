@@ -53,17 +53,11 @@ const View = (props) => {
       <Card className={classes.card}>
         <ContentsTitle title="Todo内容" />
         <Box mt={3} display="flex">
-          <IconButton
-            variant="outlined"
-            onClick={() => history.push("/todos/list")}
-          >
+          <IconButton onClick={() => history.push("/todos/list")}>
             <List />
           </IconButton>
           <div style={{ flexGrow: 1 }} />
-          <IconButton
-            variant="outlined"
-            onClick={() => history.push(`/todos/update/${id}`)}
-          >
+          <IconButton onClick={() => history.push(`/todos/update/${id}`)}>
             <Edit />
           </IconButton>
         </Box>
