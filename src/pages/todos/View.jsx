@@ -50,10 +50,11 @@ const View = (props) => {
     return null;
   }
 
-  const handleDone = () => {
+  const handleDone = (history) => {
     try {
       doneTodo(uid, id);
       showMessageSnackbar(true, "success", "完了に更新しました。");
+      history.push("/todos/list");
     } catch {
       showMessageSnackbar(true, "error", "更新に失敗しました。");
     }
@@ -71,7 +72,7 @@ const View = (props) => {
           <IconButton onClick={() => history.push(`/todos/update/${id}`)}>
             <Edit />
           </IconButton>
-          <IconButton onClick={handleDone}>
+          <IconButton onClick={() => handleDone(history)}>
             <Done />
           </IconButton>
         </Box>
