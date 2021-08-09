@@ -56,3 +56,21 @@ export async function createTodo(
     updated: datetime,
   });
 }
+
+export async function updateTodo(
+  userId,
+  id,
+  overview,
+  deadline,
+  priority,
+  details
+) {
+  const datetime = dateformat(new Date(), DATETIME_FORMAT);
+  FireStore.collection("users").doc(userId).collection("todos").doc(id).update({
+    overview,
+    deadline,
+    priority,
+    details,
+    updated: datetime,
+  });
+}

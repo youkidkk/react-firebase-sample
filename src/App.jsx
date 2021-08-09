@@ -41,6 +41,7 @@ const App = () => {
                 <Switch>
                   <PrivateRoute path="/todos/list" component={List} />
                   <PrivateRoute path="/todos/view/:id" component={View} />
+                  <PrivateRoute path="/todos/update/:id" component={Edit} />
                   <PrivateRoute path="/todos/create" component={Edit} />
                   <Route path="/" component={Login} />
                 </Switch>

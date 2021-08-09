@@ -16,8 +16,8 @@ import { DATE_FORMAT } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
 import { MessageSnackbarContext } from "components/SnackBar";
 import * as dateformat from "dateformat";
-import { createTodo } from "firebase-db";
-import { useContext, useState } from "react";
+import { createTodo, getTodo, updateTodo } from "firebase-db";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,12 +37,28 @@ const initialFormState = {
   details: "",
 };
 
+const getTodoAsync = async (uid, id, setTodo) => {
+  try {
+    setTodo(await getTodo(uid, id));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const Edit = (props) => {
   const classes = useStyles();
 
   const { currentUser } = useContext(AuthContext);
   const { showMessageSnackbar } = useContext(MessageSnackbarContext);
   const [formState, setFormState] = useState(initialFormState);
+
+  const uid = currentUser.uid;
+  const id = props.match.params.id;
+  useEffect(() => {
+    if (id) {
+      getTodoAsync(uid, id, setFormState);
+    }
+  }, [uid, id]);
 
   const handleChange = (event) => {
     setFormState({
@@ -70,24 +86,42 @@ const Edit = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      await createTodo(
-        currentUser.uid,
-        formState.overview,
-        formState.deadline,
-        formState.priority,
-        formState.details
-      );
-      showMessageSnackbar(true, "success", "登録しました。");
-    } catch (error) {
-      showMessageSnackbar(true, "error", "登録に失敗しました。");
+    if (id) {
+      try {
+        await updateTodo(
+          uid,
+          id,
+          formState.overview,
+          formState.deadline,
+          formState.priority,
+          formState.details
+        );
+        showMessageSnackbar(true, "success", "更新しました。");
+      } catch (error) {
+        showMessageSnackbar(true, "error", "更新に失敗しました。");
+      }
+    } else {
+      try {
+        await createTodo(
+          currentUser.uid,
+          formState.overview,
+          formState.deadline,
+          formState.priority,
+          formState.details
+        );
+        showMessageSnackbar(true, "success", "登録しました。");
+      } catch (error) {
+        showMessageSnackbar(true, "error", "登録に失敗しました。");
+      }
     }
   };
+
+  const createOrUpdate = id ? "更新" : "登録";
 
   return (
     <Container maxWidth="sm">
       <Card className={classes.card}>
-        <ContentsTitle title="Todo登録" />
+        <ContentsTitle title={`Todo${createOrUpdate}`} />
         <Box mt={3}>
           <Link to="/todos/list">一覧へ戻る</Link>
         </Box>
@@ -154,7 +188,7 @@ const Edit = (props) => {
             />
           </Box>
           <Box mt={4} display="flex" justifyContent="flex-end">
-            <Button type="submit">登録</Button>
+            <Button type="submit">{createOrUpdate}</Button>
           </Box>
         </form>
       </Card>
