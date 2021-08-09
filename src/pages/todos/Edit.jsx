@@ -13,6 +13,7 @@ import { yellow } from "@material-ui/core/colors";
 import { Add, List, Remove, Star, StarOutline } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT } from "common/common-const";
+import ConfirmDialog from "components/ConfirmDialog";
 import ContentsTitle from "components/ContentsTitle";
 import { MessageSnackbarContext } from "components/SnackBar";
 import * as dateformat from "dateformat";
@@ -55,6 +56,7 @@ const Edit = (props) => {
   const { showMessageSnackbar } = useContext(MessageSnackbarContext);
   const history = useHistory();
   const [formState, setFormState] = useState(initialFormState);
+  const [submitConfirmOpen, setSubmitConfirmOpen] = useState(false);
 
   const uid = currentUser.uid;
   const id = props.match.params.id;
@@ -83,6 +85,10 @@ const Edit = (props) => {
 
   const handleSubmit = async (event, history) => {
     event.preventDefault();
+    setSubmitConfirmOpen(true);
+  };
+
+  const handleSubmitConfirmOk = async () => {
     if (id) {
       try {
         await updateTodo(
@@ -215,6 +221,15 @@ const Edit = (props) => {
           </Box>
         </form>
       </Card>
+      <ConfirmDialog
+        open={submitConfirmOpen}
+        onConfirmOk={handleSubmitConfirmOk}
+        onConfirmCancel={() => setSubmitConfirmOpen(false)}
+      >
+        <div>{`${createOrUpdate}します。`}</div>
+        <div>{"よろしいですか？"}</div>
+        <div>　</div>
+      </ConfirmDialog>
     </Container>
   );
 };
