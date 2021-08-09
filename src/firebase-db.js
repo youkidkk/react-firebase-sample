@@ -74,3 +74,25 @@ export async function updateTodo(
     updated: datetime,
   });
 }
+
+export async function doneTodo(userId, id) {
+  const datetime = dateformat(new Date(), DATETIME_FORMAT);
+  const todo = await getTodo(userId, id);
+  if (todo) {
+    await FireStore.collection("users").doc(userId).collection("done").add({
+      overview: todo.overview,
+      deadline: todo.deadline,
+      priority: todo.priority,
+      details: todo.details,
+      created: datetime,
+      updated: datetime,
+    });
+    await FireStore.collection("users")
+      .doc(userId)
+      .collection("todos")
+      .doc(id)
+      .delete();
+  } else {
+    throw Error("Not exists");
+  }
+}

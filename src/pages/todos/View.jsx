@@ -5,13 +5,14 @@ import {
   IconButton,
   makeStyles,
 } from "@material-ui/core";
-import { Edit, List } from "@material-ui/icons";
+import { Done, Edit, List } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT_DISPLAY } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
 import ItemDisplay from "components/ItemDisplay";
+import { MessageSnackbarContext } from "components/SnackBar";
 import dateFormat from "dateformat";
-import { getTodo } from "firebase-db";
+import { doneTodo, getTodo } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
@@ -40,6 +41,7 @@ const View = (props) => {
   const { currentUser } = useContext(AuthContext);
   const uid = currentUser.uid;
   const id = props.match.params.id;
+  const { showMessageSnackbar } = useContext(MessageSnackbarContext);
   const [todo, setTodo] = useState(null);
   const history = useHistory();
 
@@ -47,6 +49,15 @@ const View = (props) => {
   if (todo == null) {
     return null;
   }
+
+  const handleDone = () => {
+    try {
+      doneTodo(uid, id);
+      showMessageSnackbar(true, "success", "完了に更新しました。");
+    } catch {
+      showMessageSnackbar(true, "error", "更新に失敗しました。");
+    }
+  };
 
   return (
     <Container maxWidth="sm">
@@ -59,6 +70,9 @@ const View = (props) => {
           <div style={{ flexGrow: 1 }} />
           <IconButton onClick={() => history.push(`/todos/update/${id}`)}>
             <Edit />
+          </IconButton>
+          <IconButton onClick={handleDone}>
+            <Done />
           </IconButton>
         </Box>
         <ItemDisplay itemName="概要" itemValue={todo.overview} />
