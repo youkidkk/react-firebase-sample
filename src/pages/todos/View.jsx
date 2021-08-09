@@ -1,5 +1,5 @@
 import { Box, Button, Card, Container, makeStyles } from "@material-ui/core";
-import { List } from "@material-ui/icons";
+import { Edit, List } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT_DISPLAY } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
@@ -52,6 +52,12 @@ const View = (props) => {
             onClick={() => history.push("/todos/list")}
           >
             <List />
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={() => history.push(`/todos/update/${id}`)}
+          >
+            <Edit />
           </Button>
         </Box>
         <ItemDisplay itemName="概要" itemValue={todo.overview} />
