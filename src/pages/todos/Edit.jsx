@@ -9,6 +9,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
+import { yellow } from "@material-ui/core/colors";
 import {
   ArrowLeft,
   ArrowRight,
@@ -32,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "100%",
+  },
+  priorityStar: {
+    color: yellow[900],
   },
 }));
 
@@ -123,7 +127,10 @@ const Edit = (props) => {
   for (let i = 1; i <= 5; i++) {
     if (i <= formState.priority) {
       priorityStars.push(
-        <IconButton onClick={() => handlePriorityStarClick(i)}>
+        <IconButton
+          onClick={() => handlePriorityStarClick(i)}
+          className={classes.priorityStar}
+        >
           <Star />
         </IconButton>
       );
