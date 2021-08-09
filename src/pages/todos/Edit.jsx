@@ -10,13 +10,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { yellow } from "@material-ui/core/colors";
-import {
-  ArrowLeft,
-  ArrowRight,
-  List,
-  Star,
-  StarOutline,
-} from "@material-ui/icons";
+import { Add, List, Remove, Star, StarOutline } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
@@ -190,7 +184,7 @@ const Edit = (props) => {
             <Grid container alignItems="center">
               <Grid item xs={1}>
                 <IconButton onClick={() => handlePriorityAdjust(-1)}>
-                  <ArrowLeft />
+                  <Remove />
                 </IconButton>
               </Grid>
               <Grid item alignItems="center">
@@ -198,7 +192,7 @@ const Edit = (props) => {
               </Grid>
               <Grid item xs={1}>
                 <IconButton onClick={() => handlePriorityAdjust(1)}>
-                  <ArrowRight />
+                  <Add />
                 </IconButton>
               </Grid>
             </Grid>
