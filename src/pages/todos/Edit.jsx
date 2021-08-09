@@ -122,10 +122,16 @@ const Edit = (props) => {
   const priorityStars = [];
   for (let i = 1; i <= 5; i++) {
     if (i <= formState.priority) {
-      priorityStars.push(<Star onClick={() => handlePriorityStarClick(i)} />);
+      priorityStars.push(
+        <IconButton onClick={() => handlePriorityStarClick(i)}>
+          <Star />
+        </IconButton>
+      );
     } else {
       priorityStars.push(
-        <StarOutline onClick={() => handlePriorityStarClick(i)} />
+        <IconButton onClick={() => handlePriorityStarClick(i)}>
+          <StarOutline />
+        </IconButton>
       );
     }
   }
