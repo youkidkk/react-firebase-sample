@@ -85,7 +85,7 @@ const Edit = (props) => {
     }
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event, history) => {
     event.preventDefault();
     if (id) {
       try {
@@ -98,6 +98,7 @@ const Edit = (props) => {
           formState.details
         );
         showMessageSnackbar(true, "success", "更新しました。");
+        history.push("/todos/list");
       } catch (error) {
         showMessageSnackbar(true, "error", "更新に失敗しました。");
       }
@@ -111,6 +112,7 @@ const Edit = (props) => {
           formState.details
         );
         showMessageSnackbar(true, "success", "登録しました。");
+        history.push("/todos/list");
       } catch (error) {
         showMessageSnackbar(true, "error", "登録に失敗しました。");
       }
@@ -128,7 +130,10 @@ const Edit = (props) => {
             <List />
           </IconButton>
         </Box>
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form
+          className={classes.form}
+          onSubmit={(event) => handleSubmit(event, history)}
+        >
           <Box mt={2}>
             <Typography variant="h6">概要</Typography>
             <TextField
