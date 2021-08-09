@@ -120,13 +120,22 @@ const Edit = (props) => {
   const createOrUpdate = id ? "更新" : "登録";
 
   const priorityStars = [];
-  for (let i = 0; i < 5; i++) {
-    if (i < formState.priority) {
-      priorityStars.push(<Star />);
+  for (let i = 1; i <= 5; i++) {
+    if (i <= formState.priority) {
+      priorityStars.push(<Star onClick={() => handlePriorityStarClick(i)} />);
     } else {
-      priorityStars.push(<StarOutline />);
+      priorityStars.push(
+        <StarOutline onClick={() => handlePriorityStarClick(i)} />
+      );
     }
   }
+
+  const handlePriorityStarClick = (priority) => {
+    setFormState({
+      ...formState,
+      priority: priority,
+    });
+  };
 
   return (
     <Container maxWidth="sm">
