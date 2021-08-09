@@ -87,7 +87,7 @@ const Edit = (props) => {
   return (
     <Container maxWidth="sm">
       <Card className={classes.card}>
-        <ContentsTitle title="登録" />
+        <ContentsTitle title="Todo登録" />
         <Box mt={3}>
           <Link to="/todos/list">一覧へ戻る</Link>
         </Box>
