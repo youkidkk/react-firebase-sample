@@ -9,7 +9,7 @@ import {
 import { AuthContext } from "auth/AuthProvider";
 import ContentsTitle from "components/ContentsTitle";
 import ItemLabel from "components/ItemLabel";
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef } from "react";
 import { useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
@@ -22,37 +22,24 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const initialFormState = {
-  email: "",
-  password: "",
-};
-
 const Login = () => {
   const { currentUser, login } = useContext(AuthContext);
   const history = useHistory();
-
   const classes = useStyles();
+
+  const formRef = useRef();
 
   if (currentUser) {
     history.push("/todos/list");
   }
 
-  const [formState, setFormState] = useState(initialFormState);
-
-  const handleChange = (event) => {
-    setFormState({
-      ...formState,
-      [event.target.name]: event.target.value,
-    });
-  };
-
   const handleClear = () => {
-    setFormState(initialFormState);
+    formRef.current.reset();
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const { email, password } = event.target.elements;
+    const { email, password } = formRef.current.elements;
     login(email.value, password.value, history);
   };
 
@@ -60,7 +47,7 @@ const Login = () => {
     <Container maxWidth="xs">
       <Card className={classes.card}>
         <ContentsTitle title="ログイン" />
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit} ref={formRef}>
           <Box mt={2}>
             <ItemLabel>Eメール</ItemLabel>
             <TextField
@@ -69,8 +56,6 @@ const Login = () => {
               fullWidth
               margin="dense"
               autoComplete="false"
-              value={formState.email}
-              onChange={handleChange}
             />
           </Box>
           <Box mt={2}>
@@ -82,8 +67,6 @@ const Login = () => {
               fullWidth
               margin="dense"
               autoComplete="false"
-              value={formState.password}
-              onChange={handleChange}
             />
           </Box>
           <Box mt={4} display="flex" justifyContent="flex-end">
