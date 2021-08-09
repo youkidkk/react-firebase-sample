@@ -50,9 +50,9 @@ const View = (props) => {
     return null;
   }
 
-  const handleDone = (history) => {
+  const handleDone = async (history) => {
     try {
-      doneTodo(uid, id);
+      await doneTodo(uid, id);
       showMessageSnackbar(true, "success", "完了に更新しました。");
       history.push("/todos/list");
     } catch {
