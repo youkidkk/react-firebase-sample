@@ -20,13 +20,6 @@ const useStyles = makeStyles((theme) => ({
   form: {
     width: "100%",
   },
-  actions: {
-    marginTop: "2rem",
-    textAlign: "right",
-    "& > *": {
-      marginLeft: "1rem",
-    },
-  },
 }));
 
 const initialFormState = {
