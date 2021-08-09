@@ -33,3 +33,20 @@ REACT_APP_FIREBASE_APP_ID="[appId]"
 ```
 
 ※ React App で使用する場合、先頭は「REACT_APP\_」とする必要あり
+
+## Firebase Hosting へのデプロイ
+
+```
+$ firebase login --reauth --no-localhost
+
+$ firebase init
+? Are you ready to proceed? Yes
+? Which Firebase features do you want to set up for this directory? Press Space to select features, then Enter t
+? What do you want to use as your public directory? build
+? Configure as a single-page app (rewrite all urls to /index.html)? Yes
+? Set up automatic builds and deploys with GitHub? No
+
+$ yarn build
+
+$ firebase deploy
+```
