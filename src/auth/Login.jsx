@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   Container,
@@ -7,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { AuthContext } from "auth/AuthProvider";
 import ContentsTitle from "components/ContentsTitle";
+import ItemLabel from "components/ItemLabel";
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
 
@@ -66,10 +68,10 @@ const Login = () => {
       <Card className={classes.card}>
         <ContentsTitle title="ログイン" />
         <form className={classes.form} onSubmit={handleSubmit}>
-          <div>
+          <Box mt={2}>
+            <ItemLabel>Eメール</ItemLabel>
             <TextField
               name="email"
-              label="Eメール"
               inputProps={{ required: true }}
               fullWidth
               margin="dense"
@@ -77,11 +79,11 @@ const Login = () => {
               value={formState.email}
               onChange={handleChange}
             />
-          </div>
-          <div>
+          </Box>
+          <Box mt={2}>
+            <ItemLabel>パスワード</ItemLabel>
             <TextField
               name="password"
-              label="パスワード"
               type="password"
               inputProps={{ required: true }}
               fullWidth
@@ -90,13 +92,17 @@ const Login = () => {
               value={formState.password}
               onChange={handleChange}
             />
-          </div>
-          <div className={classes.actions}>
-            <Button variant="outlined" onClick={handleClear}>
-              クリア
-            </Button>
-            <Button type="submit">ログイン</Button>
-          </div>
+          </Box>
+          <Box mt={4} display="flex" justifyContent="flex-end">
+            <Box ml={1}>
+              <Button variant="outlined" onClick={handleClear}>
+                クリア
+              </Button>
+            </Box>
+            <Box ml={1}>
+              <Button type="submit">ログイン</Button>
+            </Box>
+          </Box>
         </form>
       </Card>
     </Container>
