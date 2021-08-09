@@ -88,7 +88,7 @@ const Edit = (props) => {
     setSubmitConfirmOpen(true);
   };
 
-  const handleSubmitConfirmOk = async () => {
+  const handleSubmitConfirmOk = async (history) => {
     if (id) {
       try {
         await updateTodo(
@@ -220,7 +220,7 @@ const Edit = (props) => {
       </Card>
       <ConfirmDialog
         open={submitConfirmOpen}
-        onConfirmOk={handleSubmitConfirmOk}
+        onConfirmOk={() => handleSubmitConfirmOk(history)}
         onConfirmCancel={() => setSubmitConfirmOpen(false)}
       >
         <div>{`${createOrUpdate}します。`}</div>
