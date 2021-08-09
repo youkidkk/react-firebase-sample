@@ -49,7 +49,8 @@ const List = () => {
       <DataGrid
         rows={todos}
         columns={columns}
-        pageSize={5}
+        rowsPerPageOptions={[5, 10, 20]}
+        pageSize={10}
         autoHeight
         disableColumnFilter
         disableColumnMenu
