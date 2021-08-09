@@ -1,4 +1,5 @@
-import { Box, Divider, makeStyles, Typography } from "@material-ui/core";
+import { Box, makeStyles } from "@material-ui/core";
+import ItemLabel from "./ItemLabel";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -17,8 +18,7 @@ const ItemDisplay = (props) => {
 
   return (
     <Box mt={3}>
-      <Typography variant="h6">{props.itemName}</Typography>
-      <Divider />
+      <ItemLabel>{props.itemName}</ItemLabel>
       <div className={classes.itemDisplay}>{props.itemValue}</div>
     </Box>
   );
