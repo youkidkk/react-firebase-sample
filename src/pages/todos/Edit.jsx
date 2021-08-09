@@ -10,7 +10,7 @@ import {
   TextField,
   Typography,
 } from "@material-ui/core";
-import { ArrowLeft, ArrowRight } from "@material-ui/icons";
+import { ArrowLeft, ArrowRight, List } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
@@ -18,7 +18,7 @@ import { MessageSnackbarContext } from "components/SnackBar";
 import * as dateformat from "dateformat";
 import { createTodo, getTodo, updateTodo } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -50,6 +50,7 @@ const Edit = (props) => {
 
   const { currentUser } = useContext(AuthContext);
   const { showMessageSnackbar } = useContext(MessageSnackbarContext);
+  const history = useHistory();
   const [formState, setFormState] = useState(initialFormState);
 
   const uid = currentUser.uid;
@@ -122,8 +123,10 @@ const Edit = (props) => {
     <Container maxWidth="sm">
       <Card className={classes.card}>
         <ContentsTitle title={`Todo${createOrUpdate}`} />
-        <Box mt={3}>
-          <Link to="/todos/list">一覧へ戻る</Link>
+        <Box mt={3} display="flex">
+          <IconButton onClick={() => history.push("/todos/list")}>
+            <List />
+          </IconButton>
         </Box>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Box mt={2}>
