@@ -83,7 +83,7 @@ const Edit = (props) => {
     }
   };
 
-  const handleSubmit = async (event, history) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setSubmitConfirmOpen(true);
   };
@@ -159,10 +159,7 @@ const Edit = (props) => {
             <List />
           </IconButton>
         </Box>
-        <form
-          className={classes.form}
-          onSubmit={(event) => handleSubmit(event, history)}
-        >
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Box mt={2}>
             <Typography variant="h6">概要</Typography>
             <TextField
