@@ -1,4 +1,5 @@
-import { Box, Card, Container, makeStyles } from "@material-ui/core";
+import { Box, Button, Card, Container, makeStyles } from "@material-ui/core";
+import { List } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT_DISPLAY } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
@@ -6,7 +7,7 @@ import ItemDisplay from "components/ItemDisplay";
 import dateFormat from "dateformat";
 import { getTodo } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -34,16 +35,24 @@ const View = (props) => {
   const uid = currentUser.uid;
   const id = props.match.params.id;
   const [todo, setTodo] = useState(null);
+  const history = useHistory();
+
   useEffect(() => getTodoAsync(uid, id, setTodo), [uid, id]);
   if (todo == null) {
     return null;
   }
+
   return (
     <Container maxWidth="sm">
       <Card className={classes.card}>
         <ContentsTitle title="Todo内容" />
-        <Box mt={3}>
-          <Link to="/todos/list">一覧へ戻る</Link>
+        <Box mt={3} display="flex">
+          <Button
+            variant="outlined"
+            onClick={() => history.push("/todos/list")}
+          >
+            <List />
+          </Button>
         </Box>
         <ItemDisplay itemName="概要" itemValue={todo.overview} />
         <ItemDisplay
