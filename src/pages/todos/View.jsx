@@ -8,6 +8,7 @@ import {
 import { Done, Edit, List } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT_DISPLAY } from "common/common-const";
+import ConfirmDialog from "components/ConfirmDialog";
 import ContentsTitle from "components/ContentsTitle";
 import ItemDisplay from "components/ItemDisplay";
 import { MessageSnackbarContext } from "components/SnackBar";
@@ -43,6 +44,7 @@ const View = (props) => {
   const id = props.match.params.id;
   const { showMessageSnackbar } = useContext(MessageSnackbarContext);
   const [todo, setTodo] = useState(null);
+  const [doneConfirmOpen, setDoneConfirmOpen] = useState(false);
   const history = useHistory();
 
   useEffect(() => getTodoAsync(uid, id, setTodo), [uid, id]);
@@ -50,12 +52,16 @@ const View = (props) => {
     return null;
   }
 
-  const handleDone = async (history) => {
+  const handleDone = () => {
+    setDoneConfirmOpen(true);
+  };
+
+  const handleDoneConfirmOk = async (history) => {
     try {
       await doneTodo(uid, id);
       showMessageSnackbar(true, "success", "完了に更新しました。");
       history.push("/todos/list");
-    } catch {
+    } catch (error) {
       showMessageSnackbar(true, "error", "更新に失敗しました。");
     }
   };
@@ -84,6 +90,15 @@ const View = (props) => {
         <ItemDisplay itemName="優先度" itemValue={todo.priorityDisplay} />
         <ItemDisplay itemName="詳細" itemValue={todo.details} />
       </Card>
+      <ConfirmDialog
+        open={doneConfirmOpen}
+        onConfirmOk={() => handleDoneConfirmOk(history)}
+        onConfirmCancel={() => setDoneConfirmOpen(false)}
+      >
+        <div>{"完了とします。"}</div>
+        <div>{"よろしいですか？"}</div>
+        <div>　</div>
+      </ConfirmDialog>
     </Container>
   );
 };
