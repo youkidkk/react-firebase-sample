@@ -1,4 +1,10 @@
-import { Box, Button, Card, Container, makeStyles } from "@material-ui/core";
+import {
+  Box,
+  Card,
+  Container,
+  IconButton,
+  makeStyles,
+} from "@material-ui/core";
 import { Edit, List } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
 import { DATE_FORMAT_DISPLAY } from "common/common-const";
@@ -47,18 +53,19 @@ const View = (props) => {
       <Card className={classes.card}>
         <ContentsTitle title="Todo内容" />
         <Box mt={3} display="flex">
-          <Button
+          <IconButton
             variant="outlined"
             onClick={() => history.push("/todos/list")}
           >
             <List />
-          </Button>
-          <Button
+          </IconButton>
+          <div style={{ flexGrow: 1 }} />
+          <IconButton
             variant="outlined"
             onClick={() => history.push(`/todos/update/${id}`)}
           >
             <Edit />
-          </Button>
+          </IconButton>
         </Box>
         <ItemDisplay itemName="概要" itemValue={todo.overview} />
         <ItemDisplay
