@@ -32,6 +32,8 @@ REACT_APP_FIREBASE_MESSAGING_SENDER_ID="[messagingSenderId]"
 REACT_APP_FIREBASE_APP_ID="[appId]"
 ```
 
+※ React App で使用する場合、先頭は「REACT_APP\_」とする必要あり
+
 ### Firestore ルールの設定
 
 ```
@@ -46,8 +48,6 @@ service cloud.firestore {
   }
 }
 ```
-
-※ React App で使用する場合、先頭は「REACT_APP\_」とする必要あり
 
 ## Firebase Hosting へのデプロイ
 
