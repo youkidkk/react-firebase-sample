@@ -32,6 +32,21 @@ REACT_APP_FIREBASE_MESSAGING_SENDER_ID="[messagingSenderId]"
 REACT_APP_FIREBASE_APP_ID="[appId]"
 ```
 
+### Firestore ルールの設定
+
+```
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow create, read, update, delete: if request.auth.uid == userId;
+    }
+    match /users/{userId}/{document=**} {
+      allow create, read, update, delete: if request.auth.uid == userId;
+    }
+  }
+}
+```
+
 ※ React App で使用する場合、先頭は「REACT_APP\_」とする必要あり
 
 ## Firebase Hosting へのデプロイ
