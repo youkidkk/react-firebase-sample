@@ -10,7 +10,7 @@ import { AuthContext } from "auth/AuthProvider";
 import ContentsTitle from "components/ContentsTitle";
 import ItemLabel from "components/ItemLabel";
 import React, { useContext, useRef } from "react";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -30,7 +30,11 @@ const Login = () => {
   const formRef = useRef();
 
   if (currentUser) {
-    history.push("/todos/list");
+    return (
+      <>
+        <Redirect to="/todos/list" />
+      </>
+    );
   }
 
   const handleClear = () => {
