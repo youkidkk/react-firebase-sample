@@ -39,11 +39,13 @@ const App = () => {
             <Router>
               <div id="contents">
                 <Switch>
-                  <PrivateRoute path="/todos/list" component={List} />
-                  <PrivateRoute path="/todos/view/:id" component={View} />
-                  <PrivateRoute path="/todos/update/:id" component={Edit} />
-                  <PrivateRoute path="/todos/create" component={Edit} />
-                  <Route path="/" component={Login} />
+                  <Route path="/login" component={Login} />
+                  <PrivateRoute>
+                    <Route path="/todos/list" component={List} />
+                    <Route path="/todos/view/:id" component={View} />
+                    <Route path="/todos/update/:id" component={Edit} />
+                    <Route path="/todos/create" component={Edit} />
+                  </PrivateRoute>
                 </Switch>
               </div>
             </Router>
