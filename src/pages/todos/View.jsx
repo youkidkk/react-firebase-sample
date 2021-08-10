@@ -12,7 +12,7 @@ import ConfirmDialog from "components/ConfirmDialog";
 import ContentsTitle from "components/ContentsTitle";
 import ItemDisplay from "components/ItemDisplay";
 import { MessageSnackbarContext } from "components/SnackBar";
-import dateFormat from "dateformat";
+import dateformat from "dateformat";
 import { doneTodo, getTodo } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
@@ -85,7 +85,7 @@ const View = (props) => {
         <ItemDisplay itemName="概要" itemValue={todo.overview} />
         <ItemDisplay
           itemName="期限"
-          itemValue={dateFormat(new Date(todo.deadline), DATE_FORMAT_DISPLAY)}
+          itemValue={dateformat(new Date(todo.deadline), DATE_FORMAT_DISPLAY)}
         />
         <ItemDisplay itemName="優先度" itemValue={todo.priorityDisplay} />
         <ItemDisplay itemName="詳細" itemValue={todo.details} />
