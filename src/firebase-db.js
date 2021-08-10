@@ -1,5 +1,5 @@
 import { DATETIME_FORMAT, PRIORITY_DISPLAY } from "common/common-const";
-import * as dateformat from "dateformat";
+import dateformat from "dateformat";
 import "firebase/firestore";
 import { FirebaseApp } from "./firebase-app";
 

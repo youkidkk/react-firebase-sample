@@ -16,7 +16,7 @@ import { DATE_FORMAT } from "common/common-const";
 import ConfirmDialog from "components/ConfirmDialog";
 import ContentsTitle from "components/ContentsTitle";
 import { MessageSnackbarContext } from "components/SnackBar";
-import * as dateformat from "dateformat";
+import dateformat from "dateformat";
 import { createTodo, getTodo, updateTodo } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
