@@ -223,9 +223,9 @@ const Edit = (props) => {
         onConfirmOk={() => handleSubmitConfirmOk(history)}
         onConfirmCancel={() => setSubmitConfirmOpen(false)}
       >
-        <div>{`${createOrUpdate}します。`}</div>
-        <div>{"よろしいですか？"}</div>
-        <div>　</div>
+        <div
+          style={{ fontSize: "1.1rem", whiteSpace: "pre-wrap" }}
+        >{`${createOrUpdate}します。\nよろしいですか？`}</div>
       </ConfirmDialog>
     </Container>
   );

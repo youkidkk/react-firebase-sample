@@ -95,9 +95,9 @@ const View = (props) => {
         onConfirmOk={() => handleDoneConfirmOk(history)}
         onConfirmCancel={() => setDoneConfirmOpen(false)}
       >
-        <div>{"完了とします。"}</div>
-        <div>{"よろしいですか？"}</div>
-        <div>　</div>
+        <div style={{ fontSize: "1.1rem", whiteSpace: "pre-wrap" }}>
+          {"完了とします。\nよろしいですか？"}
+        </div>
       </ConfirmDialog>
     </Container>
   );
