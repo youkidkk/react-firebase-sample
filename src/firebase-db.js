@@ -1,4 +1,8 @@
-import { DATETIME_FORMAT, PRIORITY_DISPLAY } from "common/common-const";
+import {
+  DATETIME_FORMAT,
+  DATE_FORMAT_DISPLAY,
+  PRIORITY_DISPLAY,
+} from "common/common-const";
 import dateformat from "dateformat";
 import "firebase/firestore";
 import { FirebaseApp } from "./firebase-app";
@@ -19,6 +23,10 @@ export async function getTodos(userId) {
       id: doc.id,
       ...doc.data(),
       priorityDisplay: PRIORITY_DISPLAY[doc.data().priority],
+      deadlineDisplay: dateformat(
+        new Date(doc.data().deadline),
+        DATE_FORMAT_DISPLAY
+      ),
     });
   });
   return result;

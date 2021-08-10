@@ -20,7 +20,12 @@ const columns = [
     sortable: true,
     minWidth: 150,
   },
-  { field: "deadline", headerName: "期限", sortable: true, minWidth: 150 },
+  {
+    field: "deadlineDisplay",
+    headerName: "期限",
+    sortable: true,
+    minWidth: 150,
+  },
   { field: "overview", headerName: "概要", sortable: false, flex: 1 },
 ];
 
