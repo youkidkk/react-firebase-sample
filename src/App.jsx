@@ -1,8 +1,8 @@
 import "@fontsource/roboto/500.css";
 import { createTheme, CssBaseline, ThemeProvider } from "@material-ui/core";
 import { AuthProvider } from "auth/AuthProvider";
+import AuthRoute from "auth/AuthRoute";
 import Login from "auth/Login";
-import PrivateRoute from "auth/PrivateRoute";
 import AppBar from "components/AppBar";
 import {
   MessageSnackbar,
@@ -40,12 +40,12 @@ const App = () => {
               <div id="contents">
                 <Switch>
                   <Route path="/login" component={Login} />
-                  <PrivateRoute>
+                  <AuthRoute>
                     <Route path="/todos/list" component={List} />
                     <Route path="/todos/view/:id" component={View} />
                     <Route path="/todos/update/:id" component={Edit} />
                     <Route path="/todos/create" component={Edit} />
-                  </PrivateRoute>
+                  </AuthRoute>
                 </Switch>
               </div>
             </Router>
