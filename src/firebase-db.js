@@ -9,6 +9,7 @@ export async function getTodos(userId) {
   const res = await FireStore.collection("users")
     .doc(userId)
     .collection("todos")
+    .orderBy("orderKey")
     .get();
   if (res.empty) {
     return [];
@@ -45,14 +46,18 @@ export async function createTodo(
   details
 ) {
   const datetime = dateformat(new Date(), DATETIME_FORMAT);
-  FireStore.collection("users").doc(userId).collection("todos").add({
-    overview,
-    deadline,
-    priority,
-    details,
-    created: datetime,
-    updated: datetime,
-  });
+  FireStore.collection("users")
+    .doc(userId)
+    .collection("todos")
+    .add({
+      overview,
+      deadline,
+      priority,
+      details,
+      created: datetime,
+      updated: datetime,
+      orderKey: deadline + (10 - priority),
+    });
 }
 
 export async function updateTodo(
@@ -64,13 +69,18 @@ export async function updateTodo(
   details
 ) {
   const datetime = dateformat(new Date(), DATETIME_FORMAT);
-  FireStore.collection("users").doc(userId).collection("todos").doc(id).update({
-    overview,
-    deadline,
-    priority,
-    details,
-    updated: datetime,
-  });
+  FireStore.collection("users")
+    .doc(userId)
+    .collection("todos")
+    .doc(id)
+    .update({
+      overview,
+      deadline,
+      priority,
+      details,
+      updated: datetime,
+      orderKey: deadline + (10 - priority),
+    });
 }
 
 export async function doneTodo(userId, id) {
@@ -84,6 +94,7 @@ export async function doneTodo(userId, id) {
       details: todo.details,
       created: datetime,
       updated: datetime,
+      orderKey: datetime,
     });
     await FireStore.collection("users")
       .doc(userId)
