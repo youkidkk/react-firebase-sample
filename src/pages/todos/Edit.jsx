@@ -184,15 +184,13 @@ const Edit = (props) => {
           </Box>
           <Box mt={2}>
             <Typography variant="h6">優先度</Typography>
-            <Grid container alignItems="center">
+            <Grid container>
               <Grid item xs={1}>
                 <IconButton onClick={() => handlePriorityAdjust(-1)}>
                   <Remove />
                 </IconButton>
               </Grid>
-              <Grid item alignItems="center">
-                {priorityStars}
-              </Grid>
+              <Grid item>{priorityStars}</Grid>
               <Grid item xs={1}>
                 <IconButton onClick={() => handlePriorityAdjust(1)}>
                   <Add />
