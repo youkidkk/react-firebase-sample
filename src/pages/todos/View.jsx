@@ -7,7 +7,7 @@ import {
 } from "@material-ui/core";
 import { Done, Edit, List } from "@material-ui/icons";
 import { AuthContext } from "auth/AuthProvider";
-import { DATE_FORMAT_DISPLAY } from "common/common-const";
+import { DATE_FORMAT_DISPLAY, PRIORITY_DISPLAY } from "common/common-const";
 import ConfirmDialog from "components/ConfirmDialog";
 import ContentsTitle from "components/ContentsTitle";
 import ItemDisplay from "components/ItemDisplay";
@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
 
 const getTodoAsync = async (uid, id, setTodo) => {
   try {
-    setTodo(await getTodo(uid, id));
+    const todo = await getTodo(uid, id);
+    setTodo({ ...todo, priorityDisplay: PRIORITY_DISPLAY[todo.priority] });
   } catch (error) {
     console.log(error);
   }
