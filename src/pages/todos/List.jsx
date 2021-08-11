@@ -1,7 +1,9 @@
 import { Box, Button, Card, makeStyles } from "@material-ui/core";
 import { DataGrid } from "@material-ui/data-grid";
 import { AuthContext } from "auth/AuthProvider";
+import { DATE_FORMAT_DISPLAY, PRIORITY_DISPLAY } from "common/common-const";
 import ContentsTitle from "components/ContentsTitle";
+import dateformat from "dateformat";
 import { getTodos } from "firebase-db";
 import { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
@@ -31,7 +33,19 @@ const columns = [
 
 const getTodosAsync = async (uid, setTodos) => {
   try {
-    setTodos(await getTodos(uid));
+    const todos = await getTodos(uid);
+    setTodos(
+      todos.map((todo) => {
+        return {
+          ...todo,
+          priorityDisplay: PRIORITY_DISPLAY[todo.priority],
+          deadlineDisplay: dateformat(
+            new Date(todo.deadline),
+            DATE_FORMAT_DISPLAY
+          ),
+        };
+      })
+    );
   } catch (error) {
     console.log(error);
   }
